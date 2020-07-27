@@ -3,8 +3,6 @@
 set -e
 
 echo "prepping clamav"
-
-yum update -y
 amazon-linux-extras install epel -y
 yum install -y cpio yum-utils zip
 
