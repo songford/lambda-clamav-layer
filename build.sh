@@ -4,10 +4,6 @@ set -e
 
 echo "prepping clamav"
 
-rm -rf bin
-rm -rf lib
-rm lambda_layer.zip || true
-
 yum update -y
 amazon-linux-extras install epel -y
 yum install -y cpio yum-utils zip
@@ -31,12 +27,12 @@ rpm2cpio xz-libs*.rpm | cpio -vimd
 find usr -exec touch -t 200001010000 "{}" \;
 popd
 
-mkdir -p bin
-mkdir -p lib
+mkdir -p build/bin
+mkdir -p build/lib
 
-cp /tmp/build/usr/bin/clamscan /tmp/build/usr/bin/freshclam bin/.
-cp /tmp/build/usr/lib64/* lib/.
-cp freshclam.conf bin/freshclam.conf
+cp /tmp/build/usr/bin/clamscan /tmp/build/usr/bin/freshclam build/bin/.
+cp /tmp/build/usr/lib64/* build/lib/.
+cp freshclam.conf clamd.conf build/bin/.
 
-zip -r9 /opt/app/lambda_layer.zip bin
-zip -r9 /opt/app/lambda_layer.zip lib
+zip -r9 lambda_layer.zip bin
+zip -r9 lambda_layer.zip lib
