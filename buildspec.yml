@@ -1,55 +1,32 @@
 version: 0.2
 
-  #env:
-  #variables:
-  # key: "value"
-  # key: "value"
-  #parameter-store:
-  # key: "value"
-  # key: "value"
-  #secrets-manager:
-  # key: secret-id:json-key:version-stage:version-id
-  # key: secret-id:json-key:version-stage:version-id
-  #exported-variables:
-  # - variable
-  # - variable
-#git-credential-helper: yes
 phases:
-  #install:
-  #If you use the Ubuntu standard image 2.0 or later, you must specify runtime-versions.
-  #If you specify runtime-versions and use an image other than Ubuntu standard image 2.0, the build fails.
-  #runtime-versions:
-  # name: version
-  # name: version
-  #commands:
-  # - command
-  # - command
-  #pre_build:
-  #commands:
-  # - command
-  # - command
+  install:
+    commands:
+      - amazon-linux-extras install epel -y
+      - yum install -y cpio yum-utils zip
+      - mkdir -p /tmp/build
+      - pushd /tmp/build
   build:
     commands:
-     - ./build.sh
-    # - command
-    #post_build:
-    #commands:
-    # - command
-    # - command
-    #reports:
-    #report-name-or-arn:
-    #files:
-    # - location
-    # - location
-    #base-directory: location
-    #discard-paths: yes
-    #file-format: JunitXml | CucumberJson
+     - yumdownloader -x \*i686 --archlist=x86_64 clamav clamav-lib clamav-update json-c pcre2 libxml2 bzip2-libs libtool-ltdl xz-libs
+     - rpm2cpio clamav-0*.rpm | cpio -vimd
+     - rpm2cpio clamav-lib*.rpm | cpio -vimd
+     - rpm2cpio clamav-update*.rpm | cpio -vimd
+     - rpm2cpio json-c*.rpm | cpio -vimd
+     - rpm2cpio pcre*.rpm | cpio -vimd
+     - rpm2cpio libxml2*.rpm | cpio -vimd
+     - rpm2cpio bzip2-libs*.rpm | cpio -vimd
+     - rpm2cpio libtool-ltdl*.rpm | cpio -vimd
+     - rpm2cpio xz-libs*.rpm | cpio -vimd
+     - popd
+  post_build:
+    commands:
+      - mkdir -p build/bin
+      - mkdir -p build/lib
+      - cp /tmp/build/usr/bin/clamscan /tmp/build/usr/bin/freshclam build/bin/.
+      - cp /tmp/build/usr/lib64/* build/lib/.
+      - cp freshclam.conf clamd.conf build/bin/.
     artifacts:
       files:
-       - ./lambda_layer.zip
-    #name: $(date +%Y-%m-%d)
-    #discard-paths: yes
-    #base-directory: location
-    #cache:
-    #paths:
-    # - paths
+       - build/**/*
