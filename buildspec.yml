@@ -29,4 +29,5 @@ phases:
       - mv freshclam.conf clamd.conf build/bin/.
 artifacts:
   files:
-   - build/**/*
+   - build/bin/**/*
+   - build/lib/**/*
