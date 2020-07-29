@@ -5,10 +5,10 @@ phases:
     commands:
       - amazon-linux-extras install epel -y
       - yum install -y cpio yum-utils zip
-      - mkdir -p /tmp/build
-      - pushd /tmp/build
   build:
     commands:
+     - mkdir -p /tmp/build
+     - pushd /tmp/build
      - yumdownloader -x \*i686 --archlist=x86_64 clamav clamav-lib clamav-update json-c pcre2 libxml2 bzip2-libs libtool-ltdl xz-libs
      - rpm2cpio clamav-0*.rpm | cpio -vimd
      - rpm2cpio clamav-lib*.rpm | cpio -vimd
@@ -19,6 +19,7 @@ phases:
      - rpm2cpio bzip2-libs*.rpm | cpio -vimd
      - rpm2cpio libtool-ltdl*.rpm | cpio -vimd
      - rpm2cpio xz-libs*.rpm | cpio -vimd
+     - find usr -exec touch -t 200001010000 "{}" \;
      - popd
   post_build:
     commands:
