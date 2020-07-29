@@ -24,8 +24,8 @@ phases:
     commands:
       - mkdir -p ./build/bin
       - mkdir -p ./build/lib
-      - mv ./build/usr/bin/clamscan /tmp/build/usr/bin/freshclam build/bin/.
-      - mv ./build/usr/lib64/* build/lib/.
+      - mv ./build/usr/bin/clamscan ./build/usr/bin/freshclam ./build/bin/.
+      - mv ./build/usr/lib64/* ./build/lib/.
       - mv freshclam.conf clamd.conf build/bin/.
 artifacts:
   files:
