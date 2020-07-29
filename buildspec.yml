@@ -7,8 +7,8 @@ phases:
       - yum install -y cpio yum-utils zip
   build:
     commands:
-     - mkdir -p /tmp/build
-     - pushd /tmp/build
+     - mkdir -p ./build
+     - cd ./build
      - yumdownloader -x \*i686 --archlist=x86_64 clamav clamav-lib clamav-update json-c pcre2 libxml2 bzip2-libs libtool-ltdl xz-libs
      - rpm2cpio clamav-0*.rpm | cpio -vimd
      - rpm2cpio clamav-lib*.rpm | cpio -vimd
@@ -19,15 +19,14 @@ phases:
      - rpm2cpio bzip2-libs*.rpm | cpio -vimd
      - rpm2cpio libtool-ltdl*.rpm | cpio -vimd
      - rpm2cpio xz-libs*.rpm | cpio -vimd
-     - find usr -exec touch -t 200001010000 "{}" \;
-     - popd
+     - cd..
   post_build:
     commands:
-      - mkdir -p build/bin
-      - mkdir -p build/lib
-      - cp /tmp/build/usr/bin/clamscan /tmp/build/usr/bin/freshclam build/bin/.
-      - cp /tmp/build/usr/lib64/* build/lib/.
-      - cp freshclam.conf clamd.conf build/bin/.
-    artifacts:
-      files:
-       - build/**/*
+      - mkdir -p ./build/bin
+      - mkdir -p ./build/lib
+      - mv ./build/usr/bin/clamscan /tmp/build/usr/bin/freshclam build/bin/.
+      - mv ./build/usr/lib64/* build/lib/.
+      - mv freshclam.conf clamd.conf build/bin/.
+artifacts:
+  files:
+   - build/**/*
