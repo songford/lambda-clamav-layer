@@ -19,7 +19,7 @@ phases:
      - rpm2cpio bzip2-libs*.rpm | cpio -vimd
      - rpm2cpio libtool-ltdl*.rpm | cpio -vimd
      - rpm2cpio xz-libs*.rpm | cpio -vimd
-     - cd..
+     - cd ..
   post_build:
     commands:
       - mkdir -p ./build/bin
