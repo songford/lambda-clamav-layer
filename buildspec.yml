@@ -3,12 +3,13 @@ version: 0.2
 phases:
   install:
     commands:
+      - amazon-linux-extras install epel -y
       - yum install -y cpio yum-utils zip
   build:
     commands:
      - mkdir -p ./build
      - cd ./build
-     - yumdownloader -x \*i686 --resolve --archlist=x86_64 clamav clamav-lib epel-release "@Development Tools" clamav-update json-c pcre2 libxml2 bzip2-libs libtool-ltdl xz-libs openssl openssl-devel libcurl-devel zlib-devel libpng-devel libxml2-devel json-c-devel bzip2-devel pcre2-devel ncurses-devel
+     - yumdownloader -x \*i686 --resolve --archlist=x86_64 clamav clamav-lib "@Development Tools" clamav-update gnutls json-c pcre2 libxml2 bzip2-libs libtool-ltdl xz-libs openssl openssl-devel libcurl-devel zlib-devel libpng-devel libxml2-devel json-c-devel bzip2-devel pcre2-devel ncurses-devel
      - find . -name "*.rpm" -exec sh -c "rpm2cpio {} | cpio -vimd" \;
 #     - rpm2cpio clamav-lib*.rpm | cpio -vimd
 #     - rpm2cpio clamav-update*.rpm | cpio -vimd
