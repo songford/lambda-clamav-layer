@@ -9,7 +9,7 @@ phases:
     commands:
      - mkdir -p ./build
      - cd ./build
-     - yumdownloader -x \*i686 --archlist=x86_64 clamav clamav-lib clamav-update json-c pcre2 libxml2 bzip2-libs libidn2 libtool-ltdl xz-libs libprelude libnghttp2 nettle gnutls libcurl
+     - yumdownloader -x \*i686 --archlist=x86_64 clamav clamav-lib libssh2 clamav-update json-c pcre2 libxml2 bzip2-libs libidn2 libtool-ltdl xz-libs libprelude libnghttp2 nettle gnutls libcurl
      - rpm2cpio clamav-0*.rpm | cpio -vimd
      - rpm2cpio clamav-lib*.rpm | cpio -vimd
      - rpm2cpio clamav-update*.rpm | cpio -vimd
@@ -24,6 +24,7 @@ phases:
      - rpm2cpio libcurl*.rpm | cpio -vimd
      - rpm2cpio nettle*.rpm | cpio -vimd
      - rpm2cpio libnghttp2*.rpm | cpio -vimd
+     - rpm2cpio libssh2*.rpm | cpio -vimd
      - rpm2cpio libidn2*.rpm | cpio -vimd
      - cd ..
   post_build:
