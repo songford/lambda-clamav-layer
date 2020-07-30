@@ -20,7 +20,7 @@ phases:
      - rpm2cpio libtool-ltdl*.rpm | cpio -vimd
      - rpm2cpio xz-libs*.rpm | cpio -vimd
      - rpm2cpio libprelude*.rpm | cpio -vimd
-     - rpm2cpio libgnutls*.rpm | cpio -vimd
+     - rpm2cpio gnutls*.rpm | cpio -vimd
      - cd ..
   post_build:
     commands:
