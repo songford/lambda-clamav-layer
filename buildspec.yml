@@ -9,7 +9,7 @@ phases:
     commands:
      - mkdir -p ./build
      - cd ./build
-     - yumdownloader -x \*i686 --resolve --archlist=x86_64 clamav clamav-lib clamav-update json-c pcre2 libbz2 libprelude gnutls libtasn1 lib64nettle nettle
+     - yumdownloader -x \*i686 --resolve --archlist=x86_64 clamav clamav-lib bzip2-libs clamav-update json-c pcre2 libbz2 libprelude gnutls libtasn1 lib64nettle nettle
      - find . -name "*.rpm" -exec sh -c "rpm2cpio {} | cpio -vimd" \;
      - cd ..
   post_build:
