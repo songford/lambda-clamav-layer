@@ -9,7 +9,7 @@ phases:
     commands:
      - mkdir -p ./build
      - cd ./build
-     - yumdownloader -x \*i686 --archlist=x86_64 clamav libunistring clamav-lib openldap libssh2 clamav-update json-c pcre2 libxml2 bzip2-libs libidn2 libtool-ltdl xz-libs libprelude libnghttp2 nettle gnutls libcurl
+     - yumdownloader -x \*i686 --archlist=x86_64 clamav cyrus-sasl-lib libunistring clamav-lib openldap libssh2 clamav-update json-c pcre2 libxml2 bzip2-libs libidn2 libtool-ltdl xz-libs libprelude libnghttp2 nettle gnutls libcurl
      - rpm2cpio clamav-0*.rpm | cpio -vimd
      - rpm2cpio clamav-lib*.rpm | cpio -vimd
      - rpm2cpio clamav-update*.rpm | cpio -vimd
@@ -28,6 +28,7 @@ phases:
      - rpm2cpio libidn2*.rpm | cpio -vimd
      - rpm2cpio openldap*.rpm | cpio -vimd
      - rpm2cpio libunistring*.rpm | cpio -vimd
+     - rpm2cpio cyrus-sasl-lib*.rpm | cpio -vimd
      - cd ..
   post_build:
     commands:
