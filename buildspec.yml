@@ -10,9 +10,9 @@ phases:
      - mkdir -p ./build
      - cd ./build
      - yumdownloader -x \*i686 --resolve --archlist=x86_64 clamav clamav-lib clamav-update
-     - rpm2cpio clamav-0*.rpm | cpio -vimd
-     - rpm2cpio clamav-lib*.rpm | cpio -vimd
-     - rpm2cpio clamav-update*.rpm | cpio -vimd
+     - find . -name "*.rpm" -exec rpm2cpio {} | cpio -vimd \;
+#     - rpm2cpio clamav-lib*.rpm | cpio -vimd
+#     - rpm2cpio clamav-update*.rpm | cpio -vimd
      - cd ..
   post_build:
     commands:
