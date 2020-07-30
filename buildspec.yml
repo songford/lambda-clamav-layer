@@ -13,23 +13,6 @@ phases:
      - rpm2cpio clamav-0*.rpm | cpio -vimd
      - rpm2cpio clamav-lib*.rpm | cpio -vimd
      - rpm2cpio clamav-update*.rpm | cpio -vimd
-     - rpm2cpio json-c*.rpm | cpio -vimd
-     - rpm2cpio pcre*.rpm | cpio -vimd
-     - rpm2cpio libxml2*.rpm | cpio -vimd
-     - rpm2cpio bzip2-libs*.rpm | cpio -vimd
-     - rpm2cpio libtool-ltdl*.rpm | cpio -vimd
-     - rpm2cpio xz-libs*.rpm | cpio -vimd
-     - rpm2cpio libprelude*.rpm | cpio -vimd
-     - rpm2cpio gnutls*.rpm | cpio -vimd
-     - rpm2cpio libcurl*.rpm | cpio -vimd
-     - rpm2cpio nettle*.rpm | cpio -vimd
-     - rpm2cpio libnghttp2*.rpm | cpio -vimd
-     - rpm2cpio libssh2*.rpm | cpio -vimd
-     - rpm2cpio libidn2*.rpm | cpio -vimd
-     - rpm2cpio openldap*.rpm | cpio -vimd
-     - rpm2cpio libunistring*.rpm | cpio -vimd
-     - rpm2cpio cyrus-sasl-lib*.rpm | cpio -vimd
-     - rpm2cpio nss*.rpm | cpio -vimd
      - cd ..
   post_build:
     commands:
