@@ -10,7 +10,7 @@ phases:
     commands:
      - mkdir -p ./build
      - cd ./build
-     - yumdownloader -x \*i686 --resolve --archlist=x86_64 clamav clamav-lib bzip2-libs libidn2 nss libxcrypt-compat cyrus-sasl-lib libssh2 libunistring libnghttp2 openldap clamav-update xz-libs json-c libtool-ltdl openssl openssl-devel libcurl-devel zlib-devel libpng-devel libxml2-devel json-c-devel bzip2-devel pcre2-devel ncurses-devel pcre2 libxml2 libprelude gnutls libtasn1 lib64nettle nettle
+     - yumdownloader -x \*i686 --resolve --archlist=x86_64 clamav clamav-lib bzip2-libs libidn2 nss libcrypt-nss cyrus-sasl-lib libssh2 libunistring libnghttp2 openldap clamav-update xz-libs json-c libtool-ltdl openssl openssl-devel libcurl-devel zlib-devel libpng-devel libxml2-devel json-c-devel bzip2-devel pcre2-devel ncurses-devel pcre2 libxml2 libprelude gnutls libtasn1 nettle
      - find . -name "*.rpm" -exec sh -c "rpm2cpio {} | cpio -vimd" \;
      - cd ..
   post_build:
