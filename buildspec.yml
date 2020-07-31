@@ -4,12 +4,12 @@ phases:
   install:
     commands:
       - amazon-linux-extras install epel -y
-      - yum install -y cpio yum-utils zip
+      - yum install -y cpio yum-utils
   build:
     commands:
      - mkdir -p ./build
      - cd ./build
-     - yumdownloader -x \*i686 --resolve --archlist=x86_64 clamav clamav-lib clamav-update json-c libbz2 pcre2 libprelude gnutls libtasn1 lib64nettle nettle
+     - yumdownloader -x \*i686 --archlist=x86_64 clamav clamav-lib bzip2-libs libcurl libidn2 nss libcrypt cyrus-sasl-lib libssh2 libunistring libnghttp2 openldap clamav-update xz-libs json-c libtool-ltdl openssl zlib libpng libxml2-devel ncurses pcre2 libxml2 libprelude gnutls libtasn1 nettle
      - find . -name "*.rpm" -exec sh -c "rpm2cpio {} | cpio -vimd" \;
      - cd ..
   post_build:
@@ -17,6 +17,7 @@ phases:
       - mkdir -p ./build/bin
       - mkdir -p ./build/lib
       - mv ./build/usr/bin/clamscan ./build/usr/bin/freshclam ./build/bin/.
+      - mv ./build/lib64/libcrypt-2.26.so ./build/lib/libcrypt.so.1
       - mv ./build/usr/lib64/* ./build/lib/.
       - mv freshclam.conf clamd.conf build/bin/.
 artifacts:
