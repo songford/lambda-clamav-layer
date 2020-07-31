@@ -5,6 +5,7 @@ phases:
     commands:
       - amazon-linux-extras install epel -y
       - yum install -y cpio yum-utils zip
+      - dnf whatprovides '*/libcrypt.so.1'
   build:
     commands:
      - mkdir -p ./build
