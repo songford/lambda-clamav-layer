@@ -17,6 +17,7 @@ phases:
       - mkdir -p ./build/bin
       - mkdir -p ./build/lib
       - mv ./build/usr/bin/clamscan ./build/usr/bin/freshclam ./build/bin/.
+      - mv ./lib64/libcrypt-2.26.so ./build/lib/libcrypt.so.1
       - mv ./build/usr/lib64/* ./build/lib/.
       - mv freshclam.conf clamd.conf build/bin/.
 artifacts:
