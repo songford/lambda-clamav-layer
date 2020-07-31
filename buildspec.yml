@@ -4,8 +4,7 @@ phases:
   install:
     commands:
       - amazon-linux-extras install epel -y
-      - yum install -y cpio yum-utils zip
-      - repoquery --whatprovides '*/libcrypt.so.1'
+      - yum install -y cpio yum-utils
   build:
     commands:
      - mkdir -p ./build
@@ -18,7 +17,6 @@ phases:
       - mkdir -p ./build/bin
       - mkdir -p ./build/lib
       - mv ./build/usr/bin/clamscan ./build/usr/bin/freshclam ./build/bin/.
-      - mv ./build/usr/lib64/libcrypt-2.26.so ./build/lib/libcrypt.so.1
       - mv ./build/usr/lib64/* ./build/lib/.
       - mv freshclam.conf clamd.conf build/bin/.
 artifacts:
